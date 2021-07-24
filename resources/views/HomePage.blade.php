@@ -1,33 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
-      async
-    ></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default%22%3E"></script> 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url('/css/HomePage.css') }}" />
-    <title>Document</title>
-  
-</head>
+@extends('layouts.layout1')
 
 
+
+@section('content')
 <header>
-    <div class="topnav">
-        <img src="wello.jpg" alt="wello">
-        <a class="active" href="#Home">Home</a>
-        <a href="#About">About</a>
-        <a href="#Login">Login</a>
-        <a href="#SignUp">Sign up</a>
+  <div class="topnav">
+    <div id = "logo">
+      <a href="#Home"><img src="img/logo.png" alt="logo"></a>
     </div>
+    <div>
+      <a href="#SignUp">Sign up</a>
+      <a href="#Login">Login</a>
+      <a href="#About">About</a>
+      <!--<a class="active" href="#Home">Home</a>-->
+    </div>
+  </div>
 </header>
 
 
@@ -108,6 +95,5 @@
         lorem ipsunm something something
     </div>
 </footer>
+@endsection
 
-
-</html>
