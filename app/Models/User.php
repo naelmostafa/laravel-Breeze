@@ -20,7 +20,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'number'
     ];
 
     /**
@@ -41,12 +40,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function cart(){
-        return $this->hasOne(Cart::class);
-    }
-
-    public function order(){
-        return $this->hasOne(Order::class);
-    }
 }
