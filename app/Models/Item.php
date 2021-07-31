@@ -20,11 +20,13 @@ class Item extends Model
         'price',
     ];
     
-    
+    public function resturant(){
+        return $this->belongsTo(Resturant::class);
+    }
     public function cart(){
         return $this->belongsToMany(Cart::class);
     }
-    public function resturant(){
-        return $this->belongsTo(Resturant::class);
+    public function order(){
+        return $this->belongsToMany(Order::class);
     }
 }
