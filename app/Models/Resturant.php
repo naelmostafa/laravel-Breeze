@@ -20,7 +20,7 @@ class Resturant extends Model
     ];
 
     public function owner(){
-        return $this->belongsTo(Owner::class);
+        return $this->belongsTo(User::class);
     }
 
     public function item(){
