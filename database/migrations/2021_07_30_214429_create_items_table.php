@@ -25,7 +25,7 @@ class CreateItemsTable extends Migration
             $table->foreign('resturant_id')
                 ->references('id')
                 ->on('resturants')
-                ->onDelete('cascade');;
+                ->onDelete('cascade');
         });
     }
 
