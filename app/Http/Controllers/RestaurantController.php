@@ -6,16 +6,12 @@ use Illuminate\Http\Request;
 class RestaurantController extends Controller
 { 
     public function index()
-    {    $restaurants=User::all()->paginate(10);
-        return view('restaurants.index',compact('restaurants'));
+    {    
+       /* $restaurants=User::all()->paginate(10);*/
+        return view('restaurants');
     }
 
-   /* public function create()
-    {
-        return view('restaurants.index');
-    }
-*/
-  
+    
     public function store(Request $request)
     {    $request->validate([
         'name'=>'required','description'=>'required'
@@ -30,7 +26,17 @@ class RestaurantController extends Controller
         return view('restaurants.show',compact('restaurants'));
     }
 
+    public function showMenu()
+    {
+        $restaurant = request('restaurantName');
+
+        return view('menu',[
+            'restaurantName' => $restaurant
+        ]);
    
+    }
+
+
     public function edit(Restaurant $restaurants)
     {
         return view('restaurants.show',compact('restaurants'));
@@ -51,3 +57,4 @@ class RestaurantController extends Controller
         return redirect()->route('restaurants.index');
     }
 }
+

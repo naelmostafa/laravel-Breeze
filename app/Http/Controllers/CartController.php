@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 { 
     public function index()
-    {    $carts=Cart::all()->paginate(10);
+    {    
+        $carts=Cart::all()->paginate(10);
         return view('carts.index',compact('carts'));
     }
 
