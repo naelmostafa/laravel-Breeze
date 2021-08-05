@@ -22,7 +22,14 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/menu', function () {
-    return view('menu');
+
+    $restaurant = request('restaurantName');
+
+    return view('menu',[
+        'restaurantName' => $restaurant
+    ]);
+
+
 })->middleware(['auth'])->name('menu');
 
 Route::get('/restaurants', function () {
