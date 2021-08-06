@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item;
+use App\Models\Restaurant;
+
 class RestaurantController extends Controller
 { 
     public function index()
@@ -30,8 +33,13 @@ class RestaurantController extends Controller
     {
         $restaurant = request('restaurantName');
 
+        $stores = Restaurant::where('name', $restaurant)->first('id');
+        $items = Item::whereIn('restaurant_id', $stores)->get();
+        
+
         return view('menu',[
-            'restaurantName' => $restaurant
+            'restaurantName' => $restaurant ,
+            'foodItems' => $items ,
         ]);
    
     }
