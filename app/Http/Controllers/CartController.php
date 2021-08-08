@@ -8,6 +8,7 @@ use App\Models\Cart;
 class CartController extends Controller
 {
     public function index()
+
     {
         $carts = Cart::all()->paginate(10);
         return view('carts.index', compact('carts'));

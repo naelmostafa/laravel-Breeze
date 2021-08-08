@@ -3,23 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use App\Models\Item;
 use App\Models\Restaurant;
 
 
 class RestaurantController extends Controller
 {
     public function index()
-    {
-        $restaurants = Restaurant::all()->paginate(10);
-        return view('restaurants.index', compact('restaurants'));
+    {    
+       /* $restaurants=User::all()->paginate(10);*/
+        return view('restaurants');
     }
+      
 
     /* public function create()
     {
         return view('restaurants.index');
     }
-*/
-
+    */
+  
     public function store(Request $request)
     {
         $request->validate([
@@ -34,6 +37,23 @@ class RestaurantController extends Controller
     {
         return view('restaurants.show', compact('restaurants'));
     }
+
+
+    public function showMenu()
+    {
+        $restaurant = request('restaurantName');
+
+        $stores = Restaurant::where('name', $restaurant)->first('id');
+        $items = Item::whereIn('restaurant_id', $stores)->get();
+        
+
+        return view('menu',[
+            'restaurantName' => $restaurant ,
+            'foodItems' => $items ,
+        ]);
+   
+    }
+
 
 
     public function edit(Restaurant $restaurants)
@@ -57,3 +77,4 @@ class RestaurantController extends Controller
         return redirect()->route('restaurants.index');
     }
 }
+

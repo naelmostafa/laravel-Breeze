@@ -19,6 +19,7 @@ class Restaurant extends Model
         'description',
     ];
 
+
     public function owner()
     {
         return $this->belongsTo(User::class);

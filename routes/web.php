@@ -21,17 +21,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/menu', function () {
 
-    $restaurant = request('restaurantName');
+Route::get('/menu', 'RestaurantController@showMenu')->middleware(['auth'])->name('menu');
+Route::get('/restaurants', 'RestaurantController@index')->middleware(['auth'])->name('restaurants');
 
-    return view('menu', [
-        'restaurantName' => $restaurant
-    ]);
-})->middleware(['auth'])->name('menu');
-
-Route::get('/restaurants', function () {
-    return view('restaurants');
-})->middleware(['auth'])->name('restaurants');
 
 require __DIR__ . '/auth.php';
