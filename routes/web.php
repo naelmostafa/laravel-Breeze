@@ -25,11 +25,9 @@ Route::get('/menu', function () {
 
     $restaurant = request('restaurantName');
 
-    return view('menu',[
+    return view('menu', [
         'restaurantName' => $restaurant
     ]);
-
-
 })->middleware(['auth'])->name('menu');
 
 Route::get('/restaurants', function () {

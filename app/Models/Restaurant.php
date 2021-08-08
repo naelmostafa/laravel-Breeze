@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Resturant extends Model
+class Restaurant extends Model
 {
     use HasFactory;
 
@@ -19,11 +19,13 @@ class Resturant extends Model
         'description',
     ];
 
-    public function owner(){
+    public function owner()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function item(){
+    public function item()
+    {
         return $this->hasMany(Item::class);
     }
 }

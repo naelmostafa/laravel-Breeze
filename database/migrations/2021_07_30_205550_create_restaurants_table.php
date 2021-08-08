@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateResturantsTable extends Migration
+class CreateRestaurantsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateResturantsTable extends Migration
     public function up()
     {
         Schema::enableForeignKeyConstraints();
-        Schema::create('resturants', function (Blueprint $table) {
+        Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('description');
@@ -37,6 +37,6 @@ class CreateResturantsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resturants');
+        Schema::dropIfExists('restaurants');
     }
 }

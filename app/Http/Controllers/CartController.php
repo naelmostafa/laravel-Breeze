@@ -3,45 +3,50 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cart;
+
 class CartController extends Controller
-{ 
+{
     public function index()
-    {    $carts=Cart::all()->paginate(10);
-        return view('carts.index',compact('carts'));
+    {
+        $carts = Cart::all()->paginate(10);
+        return view('carts.index', compact('carts'));
     }
 
-   /* public function create()
+    /* public function create()
     {
         return view('carts.index');
     }*/
 
-  
+
     public function store(Request $request)
-    {    $request->validate([
-        'user_id'=>'required'
-    ]);
-        $carts=Cart::create($request->all());
+    {
+        $request->validate([
+            'user_id' => 'required'
+        ]);
+        $carts = Cart::create($request->all());
         return redirect()->route('carts.index');
     }
 
-  
+
     public function show(Cart $carts)
     {
-        return view('carts.show',compact('carts'));
+        return view('carts.show', compact('carts'));
     }
 
-   
+
     public function edit(Cart $carts)
     {
-        return view('carts.show',compact('carts'));
+        return view('carts.show', compact('carts'));
     }
 
-   
+
     public function update(Request $request, Cart $carts)
-     {    $request->validate([
-        'user_id'=>'required'
-    ]);
-        $carts=Cart::update($request->all());
+    {
+        $request->validate([
+            'user_id' => 'required'
+        ]);
+        $carts = Cart::update($request->all());
         return redirect()->route('carts.index');
     }
 

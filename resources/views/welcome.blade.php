@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>FoodCourt</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -412,13 +412,13 @@
 <body>
 
     <div style="width:800px; margin:0 auto;">
-        <img src="img/logo.png" alt="" style="margin-left: auto; margin-right: auto; display: block; width:50%; height:50%">
+        <img src="img/logo.png" alt=""
+            style="margin-left: auto; margin-right: auto; display: block; width:50%; height:50%">
         <br>
         @if (Route::has('login'))
             <div>
                 @auth
-                    <button><a href="{{ url('/dashboard') }}"
-                            class="text-sm text-white underline">Dashboard</a></button>
+                    <button><a href="{{ url('/dashboard') }}" class="text-sm text-white underline">Dashboard</a></button>
                 @else
                     <a href="{{ route('login') }}" class="text-sm bg-white text-white underline">Log in</a>
 
