@@ -19,12 +19,12 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->float('price');
-            $table->bigInteger('resturant_id')->unsigned();
+            $table->bigInteger('restaurant_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('resturant_id')
+            $table->foreign('restaurant_id')
                 ->references('id')
-                ->on('resturants')
+                ->on('restaurants')
                 ->onDelete('cascade');
         });
     }

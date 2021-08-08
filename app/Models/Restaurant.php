@@ -19,11 +19,14 @@ class Restaurant extends Model
         'description',
     ];
 
-    public function owner(){
+
+    public function owner()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function item(){
+    public function item()
+    {
         return $this->hasMany(Item::class);
     }
 }

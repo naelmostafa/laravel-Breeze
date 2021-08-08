@@ -9,24 +9,29 @@ class Item extends Model
 {
     use HasFactory;
 
-        /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
+        'id',
         'name',
         'description',
         'price',
+        'restaurant_id',
     ];
-    
-    public function resturant(){
-        return $this->belongsTo(Resturant::class);
+
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
     }
-    public function cart(){
+    public function cart()
+    {
         return $this->belongsToMany(Cart::class);
     }
-    public function order(){
+    public function order()
+    {
         return $this->belongsToMany(Order::class);
     }
 }
