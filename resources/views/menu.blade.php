@@ -1,3 +1,7 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -17,6 +21,17 @@
     -->
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+
+            <!-- Invoice Goes here -->
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg m-3" style="float: right">
+                <div class="p-6 bg-white border-b border-gray-200">
+
+                    <p>Invoice here</p>
+                </div>
+            </div>
+
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex flex-col">
@@ -61,8 +76,9 @@
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                        <a href="#ok"
-                                                            class="text-indigo-600 hover:text-indigo-900">Add</a>
+                                                        <a href="#ok" class="text-yellow-600 hover:text-yellow-900">
+                                                            <i style="font-size:24px" class="fa">&#xf055;</i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             @endfor
