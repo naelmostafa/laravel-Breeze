@@ -9,20 +9,14 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/app.css">
 
     <!-- Styles -->
-    <style>
+    <!--<style>
         /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
         html {
             line-height: 1.15;
             -webkit-text-size-adjust: 100%
-        }
-
-        body {
-            background-image: url('img/background.jpg');
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: 100% 100%;
         }
 
         a {
@@ -399,14 +393,22 @@
             }
         }
 
-    </style>
-
-    <style>
         body {
             font-family: 'Nunito', sans-serif;
         }
+        </style>
+    -->
+
+    <style>
+        body {
+            background-image: url('img/background.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
 
     </style>
+
 </head>
 
 <body>
@@ -416,14 +418,22 @@
             style="margin-left: auto; margin-right: auto; display: block; width:50%; height:50%">
         <br>
         @if (Route::has('login'))
-            <div>
+            <div style="text-align:center">
                 @auth
-                    <button><a href="{{ url('/dashboard') }}" class="text-sm text-white underline">Dashboard</a></button>
+                    <button><a href="{{ url('/dashboard') }}"
+                            class="inline-flex items-center px-4 py-2 bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">Dashboard</a></button>
                 @else
-                    <a href="{{ route('login') }}" class="text-sm bg-white text-white underline">Log in</a>
+                    <a href="{{ route('login') }}"
+                        class="inline-flex items-center px-4 py-2 bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                        Log in
+                    </a>
 
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-4 text-sm bg-white text-white underline">Register</a>
+                        <a href="{{ route('register') }}"
+                            class="inline-flex items-center px-4 py-2 bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                            Register
+                        </a>
+
                     @endif
                 @endauth
             </div>

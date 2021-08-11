@@ -13,6 +13,10 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('My Orders') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('restaurants')" :active="request()->routeIs('restaurants')">
                         {{ __('Restaurants') }}
                     </x-nav-link>

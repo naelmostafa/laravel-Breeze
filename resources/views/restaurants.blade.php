@@ -1,14 +1,16 @@
 <style>
     .row {
         display: flex;
-        /* equal height of the children */
+        flex-wrap: wrap;
     }
 
     .col {
-        flex: 1;
-        /* additionally, equal width */
-        padding: 1em;
-        border: solid;
+        margin: 10px;
+    }
+
+    img {
+        width: 200px;
+        height: 200px;
     }
 
 </style>
@@ -27,12 +29,12 @@
                     Restaurants
                 </div>
 
-                <div class="row" class="p-10" style="margin: 30px;">
+                <div class="row p-10">
 
                     <!--Card 1-->
                     <a href="{{ route('menu', ['restaurantName' => 'KFC']) }}">
-                        <div class="max-w-sm rounded overflow-hidden shadow-lg" class="col" style="margin: 15px;">
-                            <img class="w-full" src="img/kfc.png" alt="KFC" width="200px" height="200px">
+                        <div class="col max-w-sm rounded overflow-hidden shadow-lg">
+                            <img class="p-6" src="img/kfc.png" alt="KFC">
                             <div class="px-6 py-4">
                                 <div class="font-bold text-xl mb-2">KFC</div>
                             </div>
@@ -41,8 +43,8 @@
 
                     <!--Card 2-->
                     <a href="{{ route('menu', ['restaurantName' => 'McDonalds']) }}">
-                        <div class="max-w-sm rounded overflow-hidden shadow-lg" class="col" style="margin: 15px;">
-                            <img class="w-full" src="img/mcdonalds.png" alt="McDonald's" width="200px" height="200px">
+                        <div class="col max-w-sm rounded overflow-hidden shadow-lg">
+                            <img class="p-6" src="img/mcdonalds.png" alt="McDonald's">
                             <div class="px-6 py-4">
                                 <div class="font-bold text-xl mb-2">McDonald's</div>
                             </div>
@@ -51,13 +53,15 @@
 
                     <!--Card 3-->
                     <a href="{{ route('menu', ['restaurantName' => 'Papa Johns']) }}">
-                        <div class="max-w-sm rounded overflow-hidden shadow-lg" class="col" style="margin: 15px;">
-                            <img class="w-full" src="img/papa-johns.png" alt="Papa John's" width="200px" height="200px">
+                        <div class="col max-w-sm rounded overflow-hidden shadow-lg">
+                            <img class="p-6" src="img/papa-johns.png" alt="Papa John's">
                             <div class="px-6 py-4">
                                 <div class="font-bold text-xl mb-2">Papa John's</div>
                             </div>
                         </div>
                     </a>
+
+
 
                 </div>
             </div>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'FoodCourt') }}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -34,10 +34,12 @@
             {{ $slot }}
         </main>
 
-        <footer>
-            All Copyrights Reserves FoodCourt 2021
-        </footer>
     </div>
+
+    <footer class="footer purple-bg ng-scope text-gray-50" style="background-color: #262626;">
+        <p style="text-align: center">© 2021 FoodCourt, Inc. All rights reserved</p>
+    </footer>
+
 </body>
 
 </html>

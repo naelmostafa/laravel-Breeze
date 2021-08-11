@@ -4,4 +4,6 @@
 </svg>
 -->
 
-<img src="img/logo_final.png" alt="" width="50px" height="50px">
+
+
+<img src="img/logo_final.png" alt="FoodCourt" style="width: 65px; height: 65px;">

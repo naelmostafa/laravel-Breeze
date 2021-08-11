@@ -19,7 +19,7 @@ class CreateRestaurantsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->bigInteger('owner_id')->unsigned();
+            $table->bigInteger('owner_id')->unsigned()->nullable();
             $table->timestamps();
             
             $table->foreign('owner_id')
