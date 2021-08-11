@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Item;
 use App\Models\Restaurant;
-
+use App\Models\Invoice;
+use Session;
 
 class RestaurantController extends Controller
 {
@@ -23,8 +24,7 @@ class RestaurantController extends Controller
     }
     */
   
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $request->validate([
             'name' => 'required', 'description' => 'required'
         ]);
@@ -33,14 +33,12 @@ class RestaurantController extends Controller
     }
 
 
-    public function show(Restaurant $restaurants)
-    {
+    public function show(Restaurant $restaurants){
         return view('restaurants.show', compact('restaurants'));
     }
 
 
-    public function showMenu()
-    {
+    public function showMenu(){
         $restaurant = request('restaurantName');
 
         $stores = Restaurant::where('name', $restaurant)->first('id');
@@ -55,15 +53,25 @@ class RestaurantController extends Controller
     }
 
 
+    public function addToinvoice(Request $request , $id){
+        $foodItem = Item::find($id);
+        $oldInvoice = Session::has('invoice') ? Session::get('invoice') : null ;
+        $invoice = new Invoice($oldInvoice);
+        $invoice->addItem($foodItem , $foodItem->id);
+        $restaurant = Restaurant::where('id', $foodItem -> restaurant_id )->first('name');
 
-    public function edit(Restaurant $restaurants)
-    {
+        $request -> session() -> put('invoice' , $invoice);
+        //dd($request->session()->get('invoice'));
+        return redirect()->route('MenuPage');/*,['restaurantName' => $restaurant ]);*/
+    }
+
+
+    public function edit(Restaurant $restaurants){
         return view('restaurants.show', compact('restaurants'));
     }
 
 
-    public function update(Request $request, Restaurant $restaurants)
-    {
+    public function update(Request $request, Restaurant $restaurants){
         $request->validate([
             'name' => 'required', 'description' => 'required'
         ]);
@@ -71,8 +79,7 @@ class RestaurantController extends Controller
         return redirect()->route('restaurants.index');
     }
 
-    public function destroy(Restaurant $restaurants)
-    {
+    public function destroy(Restaurant $restaurants){
         $restaurants->delete();
         return redirect()->route('restaurants.index');
     }

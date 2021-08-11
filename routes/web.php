@@ -21,8 +21,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-
-Route::get('/menu', 'RestaurantController@showMenu')->middleware(['auth'])->name('menu');
+Route::get('/add-to-invoice/{id}' , [
+    'uses' => 'RestaurantController@addToinvoice',
+    'as' => 'FoodAddToInvoice'
+]);
+Route::get('/menu','RestaurantController@showMenu')->name('MenuPage')->middleware(['auth'])->name('menu');
 Route::get('/restaurants', 'RestaurantController@index')->middleware(['auth'])->name('restaurants');
 
 
