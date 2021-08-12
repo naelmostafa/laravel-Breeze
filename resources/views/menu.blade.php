@@ -76,9 +76,8 @@
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                        <a href="#ok" class="text-yellow-600 hover:text-yellow-900">
-                                                            <i style="font-size:24px" class="fa">&#xf055;</i>
-                                                        </a>
+                                                        <a href="{{ route('FoodAddToInvoice' , ['id'=>$foodItems[$i]->id] ) }}"
+                                                            class="text-indigo-600 hover:text-indigo-900">Add</a>
                                                     </td>
                                                 </tr>
                                             @endfor
