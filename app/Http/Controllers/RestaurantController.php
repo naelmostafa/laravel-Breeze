@@ -65,8 +65,8 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::where('id', $foodItem->restaurant_id)->first('name');
 
         $request->session()->put('invoice', $invoice);
-        //dd($request->session()->get('invoice'));
-        return redirect()->route('MenuPage');/*,['restaurantName' => $restaurant ]);*/
+        dd($request->session()->get('invoice'));
+        //return redirect()->route('menu' , ['restaurantName' => $restaurant -> name]);
     }
 
 
