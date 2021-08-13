@@ -56,17 +56,33 @@ class RestaurantController extends Controller
     }
 
 
-    public function addToinvoice(Request $request, $id)
+    public function addToInvoice(Request $request, $id)
     {
         $foodItem = Item::find($id);
-        $oldInvoice = $request->session()->has('users') ? session()->get('invoice') : null;
+        $oldInvoice = $request->session()->has('invoice') ? session()->get('invoice') : null;
         $invoice = new Invoice($oldInvoice);
         $invoice->addItem($foodItem, $foodItem->id);
         $restaurant = Restaurant::where('id', $foodItem->restaurant_id)->first('name');
 
         $request->session()->put('invoice', $invoice);
-        dd($request->session()->get('invoice'));
-        //return redirect()->route('menu' , ['restaurantName' => $restaurant -> name]);
+        //dd($request->session()->get('invoice'));
+        return redirect()->route('menu' , ['restaurantName' => $restaurant -> name]);
+    }
+
+    public function removeFromInvoice(Request $request, $id)
+    {
+        $foodItem = Item::find($id);
+        if($request->session()->has('invoice'))
+        {
+            $invoice = session()->get('invoice');
+            $invoice->removeItem($foodItem, $foodItem->id);
+            $request->session()->put('invoice', $invoice);
+        }
+
+        $restaurant = Restaurant::where('id', $foodItem->restaurant_id)->first('name');
+        
+        //dd($request->session()->get('invoice'));
+        return redirect()->route('menu' , ['restaurantName' => $restaurant -> name]);
     }
 
 

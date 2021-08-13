@@ -66,7 +66,7 @@
                                                     <td
                                                         class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 
-                                                        <a href="#" class="text-yellow-600 hover:text-yellow-900">
+                                                        <a href="{{ route('FoodRemoveFromInvoice', ['id' => $foodItems[$i]->id]) }}" class="text-yellow-600 hover:text-yellow-900">
                                                             <i style="font-size:24px" class="fa">&#xf056;</i>
                                                         </a>
 

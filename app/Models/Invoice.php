@@ -34,4 +34,32 @@ Class invoice
         $this->totalQty++;
         $this->totalPrice += $item->price;
     }
+
+    public function removeItem($item , $id)
+    {
+        if( $this -> items && array_key_exists($id , $this->items) )
+        {
+            $storedItem = $this->items[$id];
+
+            if ( $storedItem )
+            {
+                if($storedItem['qty'] < 1) 
+                {
+                    $this->items[$id]['item'] = null;
+                    $this->items[$id]['qty'] = 0;
+                    $this->items[$id]['price'] = 0;
+                }
+                else
+                {
+                    $storedItem['qty']--;
+                    $storedItem['price'] -= $item -> price;
+                    $this->items[$id] = $storedItem;
+                }
+                
+                $this->totalQty--;
+                $this->totalPrice -= $item->price;
+            }
+        }
+
+    }
 }
