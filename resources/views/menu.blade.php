@@ -98,10 +98,6 @@
                                     <table class="min-w-full divide-y">
                                         <thead>
                                             <tr>
-                                                <th scope="col"
-                                                    class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Quantity
-                                                </th>
                                                 <th
                                                     class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Item
@@ -114,9 +110,6 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
-
-                                                </td>
                                                 <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
 
                                                 </td>
