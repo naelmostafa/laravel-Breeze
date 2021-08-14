@@ -66,7 +66,8 @@
                                                     <td
                                                         class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 
-                                                        <a href="{{ route('FoodRemoveFromInvoice', ['id' => $foodItems[$i]->id]) }}" class="text-yellow-600 hover:text-yellow-900">
+                                                        <a href="{{ route('FoodRemoveFromInvoice', ['id' => $foodItems[$i]->id]) }}"
+                                                            class="text-yellow-600 hover:text-yellow-900">
                                                             <i style="font-size:24px" class="fa">&#xf056;</i>
                                                         </a>
 
@@ -109,14 +110,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
-
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
-
-                                                </td>
-                                            </tr>
+                                            @for ($i = 0; $i < 8; $i++)
+                                                <tr>
+                                                    <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
+                                                        Lorem Ipsum
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
+                                                        20$
+                                                    </td>
+                                                </tr>
+                                            @endfor
                                         </tbody>
                                     </table>
                                     <hr>
