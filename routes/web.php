@@ -31,8 +31,12 @@ Route::get('/remove-from-invoice/{id}' , [
     'as' => 'FoodRemoveFromInvoice'
 ]);
 
+Route::get('/invoice-to-order','RestaurantController@invoiceToOrder');
+
 Route::get('/menu','RestaurantController@showMenu')->middleware(['auth'])->name('menu');
 Route::get('/restaurants', 'RestaurantController@index')->middleware(['auth'])->name('restaurants');
+
+
 
 
 require __DIR__ . '/auth.php';

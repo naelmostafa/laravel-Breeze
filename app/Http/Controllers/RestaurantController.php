@@ -86,6 +86,11 @@ class RestaurantController extends Controller
         return redirect()->route('menu' , ['restaurantName' => $restaurant -> name]);
     }
 
+    public function invoiceToOrder(Request $request)
+    {
+        //TODO 
+    }
+
 
     public function edit(Restaurant $restaurants)
     {
