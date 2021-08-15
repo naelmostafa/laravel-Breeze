@@ -47,11 +47,12 @@ class RestaurantController extends Controller
 
         $stores = Restaurant::where('name', $restaurant)->first('id');
         $items = Item::whereIn('restaurant_id', $stores)->get();
-
+        $invoice = $request->session()->has('invoice') ? session()->get('invoice') : null;
 
         return view('menu', [
             'restaurantName' => $restaurant,
             'foodItems' => $items,
+            'invoice' => $invoice,
         ]);
     }
 
