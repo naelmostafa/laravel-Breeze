@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Restaurant;
 use App\Models\Invoice;
+use App\Models\Order;
 
 class RestaurantController extends Controller
 {
@@ -41,7 +43,7 @@ class RestaurantController extends Controller
     }
 
 
-    public function showMenu()
+    public function showMenu(Request $request)
     {
         $restaurant = request('restaurantName');
 
@@ -88,7 +90,20 @@ class RestaurantController extends Controller
 
     public function invoiceToOrder(Request $request)
     {
-        //TODO 
+        if($request->session()->has('invoice'))
+        {
+            $invoice = session()->get('invoice');
+            $order = new Order();
+
+            $user = Auth::user();
+            $userId = $user['id'];
+
+            $order->user_id = $userId;
+            $order->save();
+            //print_r($order->id);
+
+
+        } 
     }
 
 
