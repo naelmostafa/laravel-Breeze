@@ -16,12 +16,13 @@ class CreateItemOrderTable extends Migration
         Schema::enableForeignKeyConstraints();
         
         Schema::create('item_order', function (Blueprint $table) {
-            $table->bigInteger('cart_id')->unsigned();
+            $table->bigInteger('order_id')->unsigned();
             $table->bigInteger('item_id')->unsigned();
+            $table->timestamps();
 
-            $table->foreign('cart_id')
+            $table->foreign('order_id')
                 ->references('id')
-                ->on('carts');
+                ->on('orders');
 
             $table->foreign('item_id')
                 ->references('id')
