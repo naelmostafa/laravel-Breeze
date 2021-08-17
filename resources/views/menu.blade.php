@@ -126,7 +126,7 @@
                                     <br>
                                     <p>Taxes</p>
                                     <p style="text-align: right">???</p>
-                                    <br>
+                                    
                                     <p>Total</p>
                                     <p style="text-align: right">???</p>
                                     <br>

@@ -21,22 +21,20 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/add-to-invoice/{id}' , [
+Route::get('/add-to-invoice/{id}', [
     'uses' => 'RestaurantController@addToInvoice',
     'as' => 'FoodAddToInvoice'
 ]);
 
-Route::get('/remove-from-invoice/{id}' , [
+Route::get('/remove-from-invoice/{id}', [
     'uses' => 'RestaurantController@removeFromInvoice',
     'as' => 'FoodRemoveFromInvoice'
 ]);
 
-Route::get('/invoice-to-order','RestaurantController@invoiceToOrder');
+Route::get('/invoice-to-order', 'RestaurantController@invoiceToOrder');
 
-Route::get('/menu','RestaurantController@showMenu')->middleware(['auth'])->name('menu');
+Route::get('/menu', 'RestaurantController@showMenu')->middleware(['auth'])->name('menu');
+
 Route::get('/restaurants', 'RestaurantController@index')->middleware(['auth'])->name('restaurants');
-
-
-
 
 require __DIR__ . '/auth.php';

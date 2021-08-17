@@ -51,7 +51,7 @@
                                                         restaurantName
                                                     </h1>
 
-                                                    <h2>orderNo</h2>
+                                                    <p>orderNo</p>
                                                     <table class="min-w-full divide-y">
                                                         <thead>
                                                             <tr>

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-
 use App\Models\Item;
 use App\Models\Restaurant;
 use App\Models\Invoice;
@@ -41,7 +40,7 @@ class RestaurantController extends Controller
     }
 
 
-    public function showMenu()
+    public function showMenu(Request $request)
     {
         $restaurant = request('restaurantName');
 
@@ -66,24 +65,23 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::where('id', $foodItem->restaurant_id)->first('name');
 
         $request->session()->put('invoice', $invoice);
-        //dd($request->session()->get('invoice'));
-        return redirect()->route('menu' , ['restaurantName' => $restaurant -> name]);
+        dd($request->session()->get('invoice'));
+        //return redirect()->route('menu', ['restaurantName' => $restaurant->name]);
     }
 
     public function removeFromInvoice(Request $request, $id)
     {
         $foodItem = Item::find($id);
-        if($request->session()->has('invoice'))
-        {
+        if ($request->session()->has('invoice')) {
             $invoice = session()->get('invoice');
             $invoice->removeItem($foodItem, $foodItem->id);
             $request->session()->put('invoice', $invoice);
         }
 
         $restaurant = Restaurant::where('id', $foodItem->restaurant_id)->first('name');
-        
+
         //dd($request->session()->get('invoice'));
-        return redirect()->route('menu' , ['restaurantName' => $restaurant -> name]);
+        return redirect()->route('menu', ['restaurantName' => $restaurant->name]);
     }
 
     public function invoiceToOrder(Request $request)
