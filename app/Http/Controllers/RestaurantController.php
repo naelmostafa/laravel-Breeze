@@ -11,6 +11,7 @@ use App\Models\Item;
 use App\Models\Restaurant;
 use App\Models\Invoice;
 use App\Models\Order;
+use App\Models\ItemOrder;
 
 class RestaurantController extends Controller
 {
@@ -94,14 +95,23 @@ class RestaurantController extends Controller
         {
             $invoice = session()->get('invoice');
             $order = new Order();
-
             $user = Auth::user();
-            $userId = $user['id'];
 
-            $order->user_id = $userId;
+            $order->user_id = $user['id'];
             $order->save();
-            //print_r($order->id);
-
+            $orderItems = new ItemOrder();
+            $items = $invoice->items;
+            
+            foreach ( $items as &$item )
+            {
+                while( $item['qty'] > 0 )
+                {
+                    $orderItems->order_id = $order->id;
+                    $orderItems->item_id = $item['item']['id'];
+                    $orderItems->save(); 
+                    $item['qty']--;
+                }
+            }
 
         } 
     }
