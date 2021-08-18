@@ -101,6 +101,10 @@
                                             <tr>
                                                 <th
                                                     class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Quantity
+                                                </th>
+                                                <th
+                                                    class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Item
                                                 </th>
                                                 <th
@@ -110,23 +114,31 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @for ($i = 0; $i < 8; $i++)
-                                                <tr>
-                                                    <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
-                                                        Lorem Ipsum
-                                                    </td>
-                                                    <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
-                                                        20$
-                                                    </td>
-                                                </tr>
-                                            @endfor
+                                            <tr>
+                                                @if (empty($invoice->Items))
+                                                @else
+                                                    @foreach ($invoice->Items as &$item)
+                                                        @if ($item['qty'] > 0)
+                                                            <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
+                                                                {{ $items['qty'] }}
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
+                                                                {{ $items['item']['name'] }}
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
+                                                                {{ $items['price'] }}
+                                                            </td>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            </tr>
                                         </tbody>
                                     </table>
                                     <hr>
                                     <br>
                                     <p>Taxes</p>
                                     <p style="text-align: right">???</p>
-                                    
+
                                     <p>Total</p>
                                     <p style="text-align: right">???</p>
                                     <br>

@@ -49,12 +49,14 @@ class RestaurantController extends Controller
 
         $stores = Restaurant::where('name', $restaurant)->first('id');
         $items = Item::whereIn('restaurant_id', $stores)->get();
-        $invoice = $request->session()->has('invoice') ? session()->get('invoice') : null;
+        $invoice = $request->session()->has('invoice') ? session()->get('invoice') : new Invoice(null);
 
         return view('menu', [
             'restaurantName' => $restaurant,
             'foodItems' => $items,
-            'invoice' => $invoice,
+            'items' => $invoice,
+            'totalQty' => $invoice->totalQty,
+            'totalPrice' => $invoice->totalPrice,
         ]);
     }
 
@@ -68,8 +70,8 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::where('id', $foodItem->restaurant_id)->first('name');
 
         $request->session()->put('invoice', $invoice);
-        dd($request->session()->get('invoice'));
-        //return redirect()->route('menu', ['restaurantName' => $restaurant->name]);
+        //dd($request->session()->get('invoice'));
+        return redirect()->route('menu', ['restaurantName' => $restaurant->name]);
     }
 
     public function removeFromInvoice(Request $request, $id)
@@ -97,19 +99,22 @@ class RestaurantController extends Controller
 
             $order->user_id = $user['id'];
             $order->save();
-            $orderItems = new ItemOrder();
+            
             $items = $invoice->items;
             
             foreach ( $items as &$item )
             {
                 while( $item['qty'] > 0 )
                 {
+                    $orderItems = new ItemOrder();
                     $orderItems->order_id = $order->id;
                     $orderItems->item_id = $item['item']['id'];
                     $orderItems->save(); 
                     $item['qty']--;
                 }
             }
+
+            //TODO: clear invoice
 
         } 
     }

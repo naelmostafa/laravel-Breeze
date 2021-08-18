@@ -18,6 +18,18 @@ Class invoice
         }
     }
 
+    /*public static function lol($oldCart)
+    {
+        $instance = new self();
+        if ($oldCart)
+        {
+            $instance->items = $oldCart->items;
+            $instance->totalQty = $oldCart->totalQty;
+            $instance->totalPrice = $oldCart->totalPrice;
+        }
+        return $instance;
+    }*/
+
     public function addItem($item , $id)
     {
         $storedItem = ['qty' => 0 , 'price'=> $item -> price , 'item'=> $item ];
