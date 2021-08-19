@@ -114,7 +114,8 @@ class RestaurantController extends Controller
                 }
             }
 
-            //TODO: clear invoice
+            $invoice = new Invoice(null);
+            $request->session()->put('invoice', $invoice);
 
         } 
     }
