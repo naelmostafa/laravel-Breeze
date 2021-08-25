@@ -4,6 +4,11 @@ namespace App\Models;
 
 Class invoice
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     public $items = null;
     public $totalQty = 0;
     public $totalPrice = 0;

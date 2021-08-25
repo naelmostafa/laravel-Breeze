@@ -120,13 +120,13 @@
                                                     @foreach ($invoice->Items as &$item)
                                                         @if ($item['qty'] > 0)
                                                             <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
-                                                                {{ $items['qty'] }}
+                                                                {{ $item['qty'] }}
                                                             </td>
                                                             <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
-                                                                {{ $items['item']['name'] }}
+                                                                {{ $item['item']['name'] }}
                                                             </td>
                                                             <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
-                                                                {{ $items['price'] }}
+                                                                {{ $item['price'] }}
                                                             </td>
                                                         @endif
                                                     @endforeach
