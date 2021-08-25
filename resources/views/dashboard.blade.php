@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="row p-10">
-                    @for ($i = 0; $i < 3; $i++)
+                    @foreach ($orders as &$order)
                         <!-- Cards Go Here -->
                         <a href="#">
                             <div class="col bg-white overflow-hidden shadow-lg sm:rounded-lg m-3 h-1/2 w-1/4">
@@ -47,17 +47,24 @@
                                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                                 <div>
-                                                    <h1 class="font-semibold text-lg mb-8">Your Order from
-                                                        restaurantName
+                                                    <h1 class="font-semibold text-lg mb-8">Order for
+                                                        <br>
+                                                        @foreach($users as &$user)
+                                                        @if ($user['id'] == $order['user_id'])
+                                                        {{$user['name']}}
+                                                        @break
+                                                        @endif
+                                                        @endforeach
                                                     </h1>
 
-                                                    <p>orderNo</p>
+                                                    <p>order no.  {{$order['id']}}</p>
+                                                    <br>
                                                     <table class="min-w-full divide-y">
                                                         <thead>
                                                             <tr>
                                                                 <th
                                                                     class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                                    Item
+                                                                    Items
                                                                 </th>
                                                                 <th
                                                                     class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -66,30 +73,37 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @for ($j = 0; $j < 4; $j++)
-                                                                <tr>
-                                                                    <td
-                                                                        class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
-                                                                        Lorem Ipsum
-                                                                    </td>
-                                                                    <td
-                                                                        class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
-                                                                        $20
-                                                                    </td>
-                                                                </tr>
-                                                            @endfor
+                                                            @foreach($orderItems as &$orderItem)
+                                                                @if ($orderItem['order_id'] == $order['id'])
+                                                                    @foreach($foodItems as &$foodItem)
+                                                                        @if ($foodItem['id'] == $orderItem['item_id'])
+                                                                            <tr>
+                                                                                <td
+                                                                                    class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
+                                                                                    {{$foodItem['name']}}
+                                                                                </td>
+                                                                                <td
+                                                                                    class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
+                                                                                    {{$foodItem['price']}}
+                                                                                </td>
+                                                                                @break
+                                                                            </tr>
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
                                                     <hr>
-                                                    <br>
+                                                    <!--<br>
                                                     <p>Taxes</p>
                                                     <p style="text-align: right">???</p>
                                                     <br>
                                                     <p>Total</p>
-                                                    <p style="text-align: right">???</p>
+                                                    <p style="text-align: right">???</p>-->
                                                     <br>
                                                     <button class="float-right">
-                                                        <a href="#"
+                                                        <a href="{{ route('RemoveOrder', ['id' => $order['id'] ]) }}"
                                                             class="inline-flex items-center px-4 py-2 bg-red-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
                                                             Delete Order
                                                         </a>
@@ -101,7 +115,7 @@
                                 </div>
                             </div>
                         </a>
-                    @endfor
+                    @endforeach
                 </div>
             </div>
         </div>

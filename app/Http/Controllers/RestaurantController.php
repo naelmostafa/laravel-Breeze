@@ -11,6 +11,7 @@ use App\Models\Restaurant;
 use App\Models\Invoice;
 use App\Models\Order;
 use App\Models\ItemOrder;
+use App\Models\User;
 
 class RestaurantController extends Controller
 {
@@ -42,6 +43,24 @@ class RestaurantController extends Controller
         return view('restaurants.show', compact('restaurants'));
     }
 
+    public function dashboard()
+    {
+        $orders = Order::all();
+        $orderItems = ItemOrder::all();
+        $users = User::all();
+        $foodItems = Item::all();
+        return view('dashboard' , [
+            'orders' =>$orders,
+            'orderItems' =>$orderItems,
+            'users' =>$users,
+            'foodItems' => $foodItems,
+        ]);
+    }
+
+    public function removeOrder($id)
+    {
+        $stores = Restaurant::where('name', $restaurant)->first('id');
+    }
 
     public function showMenu(Request $request)
     {
@@ -54,7 +73,7 @@ class RestaurantController extends Controller
         return view('menu', [
             'restaurantName' => $restaurant,
             'foodItems' => $items,
-            'items' => $invoice,
+            'items' => $invoice->items,
             'totalQty' => $invoice->totalQty,
             'totalPrice' => $invoice->totalPrice,
         ]);
@@ -116,7 +135,7 @@ class RestaurantController extends Controller
 
             $invoice = new Invoice(null);
             $request->session()->put('invoice', $invoice);
-
+            return redirect()->route('dashboard');
         } 
     }
 
