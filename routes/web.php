@@ -17,13 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', 'RestaurantController@dashboard')->middleware(['auth'])->name('dashboard');
 
 Route::get('/add-to-invoice/{id}', [
     'uses' => 'RestaurantController@addToInvoice',
     'as' => 'FoodAddToInvoice'
+]);
+
+Route::get('/remove-order/{id}', [
+    'uses' => 'RestaurantController@removeOrder',
+    'as' => 'RemoveOrder'
 ]);
 
 Route::get('/remove-from-invoice/{id}', [

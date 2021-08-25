@@ -115,19 +115,21 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                @if (empty($invoice->Items))
+                                                @if (empty($items))
                                                 @else
-                                                    @foreach ($invoice->Items as &$item)
-                                                        @if ($item['qty'] > 0)
-                                                            <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
-                                                                {{ $item['qty'] }}
-                                                            </td>
-                                                            <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
-                                                                {{ $item['item']['name'] }}
-                                                            </td>
-                                                            <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
-                                                                {{ $item['price'] }}
-                                                            </td>
+                                                    @foreach ($items as &$item)
+                                                        @if ($item)
+                                                            @if ($item['qty'] && $item['qty'] > 0)
+                                                                <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
+                                                                    {{ $item['qty'] }}
+                                                                </td>
+                                                                <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
+                                                                    {{ $item['item']['name'] }}
+                                                                </td>
+                                                                <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
+                                                                    {{ $item['price'] }} 
+                                                                </td> 
+                                                            @endif
                                                         @endif
                                                     @endforeach
                                                 @endif
@@ -136,11 +138,14 @@
                                     </table>
                                     <hr>
                                     <br>
-                                    <p>Taxes</p>
-                                    <p style="text-align: right">???</p>
+                                    <p>Price</p>
+                                    <p style="text-align: right">{{$totalPrice}}</p>
+
+                                    <p>Taxes (12%)</p>
+                                    <p style="text-align: right">{{$totalPrice * 12 / 100 }}</p>
 
                                     <p>Total</p>
-                                    <p style="text-align: right">???</p>
+                                    <p style="text-align: right">{{$totalPrice + ($totalPrice * 12 / 100)}}</p>
                                     <br>
                                     <button class="float-right">
                                         <a href="/invoice-to-order"
