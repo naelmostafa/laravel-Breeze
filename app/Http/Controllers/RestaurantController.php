@@ -49,10 +49,10 @@ class RestaurantController extends Controller
         $orderItems = ItemOrder::all();
         $users = User::all();
         $foodItems = Item::all();
-        return view('dashboard' , [
-            'orders' =>$orders,
-            'orderItems' =>$orderItems,
-            'users' =>$users,
+        return view('dashboard', [
+            'orders' => $orders,
+            'orderItems' => $orderItems,
+            'users' => $users,
             'foodItems' => $foodItems,
         ]);
     }
@@ -110,25 +110,22 @@ class RestaurantController extends Controller
 
     public function invoiceToOrder(Request $request)
     {
-        if($request->session()->has('invoice'))
-        {
+        if ($request->session()->has('invoice')) {
             $invoice = session()->get('invoice');
             $order = new Order();
             $user = Auth::user();
 
             $order->user_id = $user['id'];
             $order->save();
-            
+
             $items = $invoice->items;
-            
-            foreach ( $items as &$item )
-            {
-                while( $item['qty'] > 0 )
-                {
+
+            foreach ($items as &$item) {
+                while ($item['qty'] > 0) {
                     $orderItems = new ItemOrder();
                     $orderItems->order_id = $order->id;
                     $orderItems->item_id = $item['item']['id'];
-                    $orderItems->save(); 
+                    $orderItems->save();
                     $item['qty']--;
                 }
             }
@@ -136,7 +133,7 @@ class RestaurantController extends Controller
             $invoice = new Invoice(null);
             $request->session()->put('invoice', $invoice);
             return redirect()->route('dashboard');
-        } 
+        }
     }
 
 

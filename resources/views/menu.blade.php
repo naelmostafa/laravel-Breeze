@@ -114,38 +114,43 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                @if (empty($items))
-                                                @else
-                                                    @foreach ($items as &$item)
-                                                        @if ($item)
-                                                            @if ($item['qty'] && $item['qty'] > 0)
-                                                                <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
+
+                                            @if (empty($items))
+                                            @else
+                                                @foreach ($items as &$item)
+                                                    @if ($item)
+                                                        @if ($item['qty'] && $item['qty'] > 0)
+                                                            <tr>
+                                                                <td
+                                                                    class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
                                                                     {{ $item['qty'] }}
                                                                 </td>
-                                                                <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
+                                                                <td
+                                                                    class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
                                                                     {{ $item['item']['name'] }}
                                                                 </td>
-                                                                <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
-                                                                    {{ $item['price'] }} 
-                                                                </td> 
-                                                            @endif
+                                                                <td
+                                                                    class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
+                                                                    {{ $item['price'] }}
+                                                                </td>
+                                                            </tr>
                                                         @endif
-                                                    @endforeach
-                                                @endif
-                                            </tr>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+
                                         </tbody>
                                     </table>
                                     <hr>
                                     <br>
                                     <p>Price</p>
-                                    <p style="text-align: right">{{$totalPrice}}</p>
+                                    <p style="text-align: right">{{ $totalPrice }}</p>
 
                                     <p>Taxes (12%)</p>
-                                    <p style="text-align: right">{{$totalPrice * 12 / 100 }}</p>
+                                    <p style="text-align: right">{{ ($totalPrice * 12) / 100 }}</p>
 
                                     <p>Total</p>
-                                    <p style="text-align: right">{{$totalPrice + ($totalPrice * 12 / 100)}}</p>
+                                    <p style="text-align: right">{{ $totalPrice + ($totalPrice * 12) / 100 }}</p>
                                     <br>
                                     <button class="float-right">
                                         <a href="/invoice-to-order"
