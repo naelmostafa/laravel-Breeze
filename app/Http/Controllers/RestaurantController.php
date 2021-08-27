@@ -12,6 +12,8 @@ use App\Models\Invoice;
 use App\Models\Order;
 use App\Models\ItemOrder;
 use App\Models\User;
+use App\Models\Cart;
+use App\Models\CartItem;
 
 class RestaurantController extends Controller
 {
@@ -45,6 +47,7 @@ class RestaurantController extends Controller
 
     public function dashboard()
     {
+        $currUser =  Auth::user();
         $orders = Order::all();
         $orderItems = ItemOrder::all();
         $users = User::all();
@@ -54,12 +57,34 @@ class RestaurantController extends Controller
             'orderItems' => $orderItems,
             'users' => $users,
             'foodItems' => $foodItems,
+            'currUser' => $currUser,
         ]);
     }
 
     public function removeOrder($id)
     {
-        $stores = Restaurant::where('name', $restaurant)->first('id');
+        $order = Order::find($id)->first();
+        $cart = new Cart();
+        $cart->order_id = $order->id;
+        $cart->user_id = $order->user_id;
+        $cart->save();
+        Order::find($id)->delete(); // moved order from orders db to carts db
+        
+        $orderItems = ItemOrder::whereIn('order_id' , $id)->get();
+
+
+        foreach ($orderItems as &$item) {
+
+            $cartItem = new CartItem();
+            $cartItem->order_id = $item->order_id;
+            $cartItem->item_id = $item->item_id;
+            $cartItem->save();
+            $item->delete();
+
+        }
+
+        return redirect()->route('dashboard');
+
     }
 
     public function showMenu(Request $request)

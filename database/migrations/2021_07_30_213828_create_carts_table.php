@@ -16,6 +16,7 @@ class CreateCartsTable extends Migration
         Schema::enableForeignKeyConstraints();
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('order_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
 

@@ -39,6 +39,7 @@
                 <div class="row p-10">
                     @foreach ($orders as &$order)
                         <!-- Cards Go Here -->
+                        @if ($currUser['id'] == $order['user_id'])
                         <a href="#">
                             <div class="col bg-white overflow-hidden shadow-lg sm:rounded-lg m-3 h-1/2 w-1/4">
                                 <div class="p-6 bg-white border-b border-gray-200">
@@ -52,46 +53,46 @@
                                                             @if ($user['id'] == $order['user_id'])
                                                                 {{ $user['name'] }}
                                                             @break
-                                                        @endif
-                    @endforeach
-                    </h1>
+                                                            @endif
+                                                        @endforeach
+                                                    </h1>
 
-                    <p>order no. {{ $order['id'] }}</p>
-                    <br>
-                    <table class="min-w-full divide-y">
-                        <thead>
-                            <tr>
-                                <th
-                                    class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Items
-                                </th>
-                                <th
-                                    class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Sub-total
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($orderItems as &$orderItem)
-                                @if ($orderItem['order_id'] == $order['id'])
-                                    @foreach ($foodItems as &$foodItem)
-                                        @if ($foodItem['id'] == $orderItem['item_id'])
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
-                                                    {{ $foodItem['name'] }}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
-                                                    {{ $foodItem['price'] }}
-                                                </td>
-                                        @break
-                                        </tr>
-                                    @endif
-                                @endforeach
-                            @endif
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <hr>
+                                                    <p>order no. {{ $order['id'] }}</p>
+                                                    <br>
+                                                    <table class="min-w-full divide-y">
+                                                        <thead>
+                                                            <tr>
+                                                                <th
+                                                                    class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                    Items
+                                                                </th>
+                                                                <th
+                                                                    class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                    Sub-total
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($orderItems as &$orderItem)
+                                                                @if ($orderItem['order_id'] == $order['id'])
+                                                                    @foreach ($foodItems as &$foodItem)
+                                                                        @if ($foodItem['id'] == $orderItem['item_id'])
+                                                                            <tr>
+                                                                                <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
+                                                                                    {{ $foodItem['name'] }}
+                                                                                </td>
+                                                                                <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
+                                                                                    {{ $foodItem['price'] }}
+                                                                                </td>
+                                                                                @break
+                                                                            </tr>
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                    <hr>
                     <!--<br>
                                                     <p>Taxes</p>
                                                     <p style="text-align: right">???</p>
@@ -112,6 +113,7 @@
     </div>
     </div>
     </a>
+    @endif
     @endforeach
     </div>
     </div>
