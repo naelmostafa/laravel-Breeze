@@ -65,24 +65,23 @@ class RestaurantController extends Controller
     {
         $order = Order::find($id)->first();
         $cart = new Cart();
-        $cart->order_id = $order->id;
+        $cart->order_id = $id;
         $cart->user_id = $order->user_id;
-        $cart->save();
-        Order::find($id)->delete(); // moved order from orders db to carts db
+        $cart->save(); // moved order from orders db to carts db
         
-        $orderItems = ItemOrder::whereIn('order_id' , $id)->get();
+        $orderItems = ItemOrder::where('order_id' , $id)->get();
 
 
         foreach ($orderItems as &$item) {
 
             $cartItem = new CartItem();
-            $cartItem->order_id = $item->order_id;
+            $cartItem->cart_id = $item->order_id;
             $cartItem->item_id = $item->item_id;
             $cartItem->save();
-            $item->delete();
-
         }
 
+        ItemOrder::where('order_id' , $id)->delete();
+        Order::find($id)->delete(); 
         return redirect()->route('dashboard');
 
     }
