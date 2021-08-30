@@ -70,6 +70,9 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                $price = 0
+                                @endphp
                                 @foreach ($orderItems as &$orderItem)
                                     @if ($orderItem['order_id'] == $order['id'])
                                         @foreach ($foodItems as &$foodItem)
@@ -81,6 +84,9 @@
                                                     <td class="px-6 py-4 whitespace-wrap text-sm text-gray-500">
                                                         {{ $foodItem['price'] }}
                                                     </td>
+                                                    @php
+                                                        $price += $foodItem['price']
+                                                    @endphp
                                             @break
                                             </tr>
                                         @endif
@@ -90,30 +96,30 @@
                     </tbody>
                     </table>
                     <hr>
-                    <!--
+                    
                         <table class="min-w-full divide-y mt-6 mb-6">
                             <tbody>
                                 <tr>
                                     <td class="px-3 py-2 whitespace-wrap font-semibold">Price</td>
                                     <td class="px-3 py-2 whitespace-wrap text-sm text-right">
-                                        ???
+                                        {{ $price }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="px-3 py-2 whitespace-wrap font-semibold">Taxes</td>
+                                    <td class="px-3 py-2 whitespace-wrap font-semibold">Taxes (12%)</td>
                                     <td class="px-3 py-2 whitespace-wrap text-sm text-right">
-                                        ???
+                                        {{ ($price*12)/100 }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="px-3 py-2 whitespace-wrap font-semibold">Total</td>
                                     <td class="px-3 py-2 whitespace-wrap text-sm text-right">
-                                        ???
+                                        {{ (($price*12)/100) + $price }}
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                    -->
+                    
                     <button class="mt-6 float-right">
                         <a href="{{ route('RemoveOrder', ['id' => $order['id']]) }}"
                             class="inline-flex items-center px-4 py-2 bg-red-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">

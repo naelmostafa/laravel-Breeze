@@ -136,28 +136,30 @@ class RestaurantController extends Controller
     {
         if ($request->session()->has('invoice')) {
             $invoice = session()->get('invoice');
-            $order = new Order();
-            $user = Auth::user();
+            if($invoice->totalQty > 0){
+                $order = new Order();
+                $user = Auth::user();
 
-            $order->user_id = $user['id'];
-            $order->save();
+                $order->user_id = $user['id'];
+                $order->save();
 
-            $items = $invoice->items;
+                $items = $invoice->items;
 
-            foreach ($items as &$item) {
-                while ($item['qty'] > 0) {
-                    $orderItems = new ItemOrder();
-                    $orderItems->order_id = $order->id;
-                    $orderItems->item_id = $item['item']['id'];
-                    $orderItems->save();
-                    $item['qty']--;
+                foreach ($items as &$item) {
+                    while ($item['qty'] > 0) {
+                        $orderItems = new ItemOrder();
+                        $orderItems->order_id = $order->id;
+                        $orderItems->item_id = $item['item']['id'];
+                        $orderItems->save();
+                        $item['qty']--;
+                    }
                 }
-            }
 
-            $invoice = new Invoice(null);
-            $request->session()->put('invoice', $invoice);
-            return redirect()->route('dashboard');
+                    $invoice = new Invoice(null);
+                    $request->session()->put('invoice', $invoice);
+            }   
         }
+        return redirect()->route('dashboard');
     }
 
 
