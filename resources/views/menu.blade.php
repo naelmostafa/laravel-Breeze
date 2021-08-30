@@ -68,12 +68,14 @@
 
                                                         <a href="{{ route('FoodRemoveFromInvoice', ['id' => $foodItems[$i]->id]) }}"
                                                             class="text-yellow-600 hover:text-yellow-900">
-                                                            <i style="font-size:24px" class="fa">&#xf056;</i>
+                                                            <i style="font-size:24px"
+                                                                class="fa">&#xf056;</i>
                                                         </a>
 
                                                         <a href="{{ route('FoodAddToInvoice', ['id' => $foodItems[$i]->id]) }}"
                                                             class="text-yellow-600 hover:text-yellow-900">
-                                                            <i style="font-size:24px" class="fa">&#xf055;</i>
+                                                            <i style="font-size:24px"
+                                                                class="fa">&#xf055;</i>
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -95,7 +97,7 @@
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                 <div>
-                                    <h2 class="font-semibold text-lg mb-8">Your Order</h2>
+                                    <h2 class="font-bold text-lg mb-8">Your Order</h2>
                                     <table class="min-w-full divide-y">
                                         <thead>
                                             <tr>
@@ -142,16 +144,27 @@
                                         </tbody>
                                     </table>
                                     <hr>
-                                    <br>
-                                    <p>Price</p>
-                                    <p style="text-align: right">{{ $totalPrice }}</p>
 
-                                    <p>Taxes (12%)</p>
-                                    <p style="text-align: right">{{ ($totalPrice * 12) / 100 }}</p>
+                                    <table class="min-w-full divide-y mt-6 mb-6">
+                                        <tbody>
+                                            <tr>
+                                                <td class="px-3 py-2 whitespace-wrap font-semibold">Price</td>
+                                                <td class="px-3 py-2 whitespace-wrap text-sm text-right">
+                                                    {{ $totalPrice }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-3 py-2 whitespace-wrap font-semibold">Taxes (12%)</td>
+                                                <td class="px-3 py-2 whitespace-wrap text-sm text-right">
+                                                    {{ ($totalPrice * 12) / 100 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-3 py-2 whitespace-wrap font-semibold">Total</td>
+                                                <td class="px-3 py-2 whitespace-wrap text-sm text-right">
+                                                    {{ $totalPrice + ($totalPrice * 12) / 100 }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
-                                    <p>Total</p>
-                                    <p style="text-align: right">{{ $totalPrice + ($totalPrice * 12) / 100 }}</p>
-                                    <br>
                                     <button class="float-right">
                                         <a href="/invoice-to-order"
                                             class="inline-flex items-center px-4 py-2 bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
